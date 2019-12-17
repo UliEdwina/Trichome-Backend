@@ -1,15 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-
 const userController = require('./Controller/userController')
 
 // GET users listing. 
-router.get('/', userController.getAllUsers);
+router.get('/',  (req, res, next) => {
+    res.send("respond with resource")
+});
 
-router.post('/singleUser', userController.getUserEmail)
 
-router.post('/usersignupandin', userController.userSignUpandIn);
+
+// router.post('/login', userController.logIn)
+
+router.post('/usersignupandlogin', userController.userSignUp 
+
+)
 
 module.exports = router;
 

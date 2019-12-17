@@ -6,15 +6,22 @@ var logger = require('morgan');
 const mongoose = require('mongoose')
 const passport = require('passport')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users/users');
+const contentRouter = require('./routes/content/content')
 
 require('dotenv').config()
 
 const app = express();
 
 app.use(cors())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(bodyParser.json())
+app.use(bodyParser.raw())
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -38,8 +45,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize())
 
 app.use('/', indexRouter);
-console.log('works')
+
 app.use('/users', usersRouter);
+app.use('/content', contentRouter)
+
+
 
 
 

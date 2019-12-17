@@ -3,6 +3,7 @@ const ExtractJwt  = require('passport-jwt').ExtractJwt
 
 const User = require('../routes/users/model/Users')
 
+
 const key = process.env.SECRET_KEY || 'defaultSecretKey'
 
 const opts = {}
